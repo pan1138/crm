@@ -14,27 +14,34 @@
      http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	<!-- 配置部门模块action类 -->	
 	<bean id="departmentAction" class="cn.pan.szu.action.DepartmentAction" scope="prototype">
 		<property name="departmentService" ref="departmentService"></property>
 	</bean>
+	
+	<!-- 配置员工模块action类 -->
 	<bean id="employeeAction" class="cn.pan.szu.action.EmployeeAction" scope="prototype">
 		<property name="employeeService" ref="employeeService"></property>
 		<property name="departmentService" ref="departmentService"></property>
 	</bean>
 	
+	<!-- 配置登陆模块action类 -->
 	<bean id="loginAction" class="cn.pan.szu.action.LoginAction" scope="prototype">
 		<property name="employeeService" ref="employeeService"></property>
 	</bean>
 	
+	<!-- 配置客户模块action类 -->
 	<bean id="customerAction" class="cn.pan.szu.action.CustomerAction" scope="prototype">
 		<property name="customerService" ref="customerService"></property>
 	</bean>
 	
+	<!-- 配置跟进历史模块action类 -->
 	<bean id="traceHistoryAction" class="cn.pan.szu.action.TraceHistoryAction" scope="prototype">
 		<property name="customerService" ref="customerService"></property>
 		<property name="traceHistoryService" ref="traceHistoryService"></property>
 	</bean>
 	
+	<!-- 配置移交历史模块action类 -->
 	<bean id="transferHistoryAction" class="cn.pan.szu.action.TransferHistoryAction" scope="prototype">
 		<property name="customerService" ref="customerService"></property>
 		<property name="employeeService" ref="employeeService"></property>
