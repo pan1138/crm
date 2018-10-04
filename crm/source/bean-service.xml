@@ -14,18 +14,27 @@
      http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	<!-- 配置部门模块service类 -->
 	<bean id="departmentService" class="cn.pan.szu.service.impl.DepartmentService">
 		<property name="departmentDao" ref="departmentDao"></property>
 	</bean>
+	
+	<!-- 配置员工模块service类 -->
 	<bean id="employeeService" class="cn.pan.szu.service.impl.EmployeeService">
 		<property name="employeeDao" ref="employeeDao"></property>
 	</bean>
+	
+	<!-- 配置客户模块service类 -->
 	<bean id="customerService" class="cn.pan.szu.service.impl.CustomerService">
 		<property name="customerDao" ref="customerDao"></property>
 	</bean>
+	
+	<!-- 配置跟进历史模块service类 -->
 	<bean id="traceHistoryService" class="cn.pan.szu.service.impl.TraceHistoryService">
 		<property name="traceHistoryDao" ref="traceHistoryDao"></property>
 	</bean>
+	
+	<!-- 配置移交历史模块service类 -->
 	<bean id="transferHistoryService" class="cn.pan.szu.service.impl.TransferHistoryService">
 		<property name="transferHistoryDao" ref="transferHistoryDao"></property>
 	</bean>
