@@ -14,6 +14,7 @@
      http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	<!-- 导入相关bean配置文件 -->	
 	<import resource="bean-public.xml"/>
 	<import resource="bean-dao.xml"/>
 	<import resource="bean-service.xml"/>
