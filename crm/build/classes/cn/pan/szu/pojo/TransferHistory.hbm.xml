@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.pan.szu.pojo">
+    <class name="TransferHistory" table="t_TransferHistory">
+        <id name="id" type="java.lang.Long">
+            <generator class="native" />
+        </id>
+        <property name="reason" length="500"></property>
+        <property name="transferTime" type="timestamp"></property>
+        
+   		<!-- 移交的客户以及其相应的营销人员配置 -->
+   		<many-to-one name="customer" class="Customer" column="customer_id">
+   		</many-to-one>
+  		<many-to-one name="oldSeller" class="Employee" column="oldSeller">
+   		</many-to-one>
+   		<many-to-one name="newSeller" class="Employee" column="newSeller">
+   		</many-to-one>
+    </class>
+</hibernate-mapping>

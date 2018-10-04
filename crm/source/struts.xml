@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 常量配置 -->
+	<!-- 配置struts标签采用简单样式的主题 -->	
+	<constant name="struts.ui.theme" value="simple"></constant>
+	
+	<package name="crm" extends="struts-default">
+		
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<interceptor name="authInterceptor" class="cn.pan.szu.interceptor.AuthInterceptor"></interceptor>
+		
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<global-results>
+			<result name="input" type="redirect">/login.jsp</result>
+		</global-results>
+	
+		<!-- 部门模块 -->
+		<action name="dept_*" class="departmentAction" method="{1}">
+			<result>/WEB-INF/views/main.jsp</result>
+			<result name="list">/WEB-INF/views/department/list.jsp</result>
+			<result name="viewEdit">/WEB-INF/views/department/edit.jsp</result>
+		</action>
+		
+		<!-- 首页视图显示 -->
+		<action name="main_*" class="cn.pan.szu.action.MainAction" method="{1}">
+			<result>/WEB-INF/views/main.jsp</result>
+			<result name="{1}">/WEB-INF/views/{1}.jsp</result>
+		</action>
+		
+		<!-- 员工模块 -->
+		<action name="emp_*" class="employeeAction" method="{1}">
+			<result>/WEB-INF/views/main.jsp</result>
+			<result name="list">/WEB-INF/views/emp/list.jsp</result>
+			<result name="viewEdit">/WEB-INF/views/emp/edit.jsp</result>
+			<result name="edit" type="redirectAction">emp_list.action</result>
+		</action>
+		
+		<!-- 登陆模块 -->
+		<action name="login_*" class="loginAction" method="{1}">
+		<!-- 覆盖拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirectAction">main.action</result>
+		</action>
+		
+		<!-- 客户模块 -->
+		<action name="customer_*" class="customerAction" method="{1}">
+			<result>/WEB-INF/views/main.jsp</result>
+			<result name="list">/WEB-INF/views/customer/list.jsp</result>
+			<result name="edit" type="redirectAction">customer_list.action</result>
+			<result name="viewEdit">/WEB-INF/views/customer/edit.jsp</result>
+			<result name="listByStatus">/WEB-INF/views/customer/list_status.jsp</result>
+		</action>
+		
+		<!-- 客户跟进模块 -->
+		<action name="traceHistory_*" class="traceHistoryAction" method="{1}">
+			<result name="edit">/WEB-INF/views/trace/edit.jsp</result>
+			<result name="save" type="redirectAction">traceHistory_list.action</result>
+			<result name="list">/WEB-INF/views/trace/list.jsp</result>
+		</action>
+		
+		<!-- 客户移交模块 -->
+		<action name="transferHistory_*" class="transferHistoryAction" method="{1}">
+			<result name="edit">/WEB-INF/views/transfer/edit.jsp</result>
+			<result name="save" type="redirectAction">transferHistory_list.action</result>
+			<result name="list">/WEB-INF/views/transfer/list.jsp</result>
+		</action>
+	</package>
+	
+</struts>
